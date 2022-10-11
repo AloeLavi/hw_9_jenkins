@@ -11,6 +11,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static io.qameta.allure.Allure.step;
+
 
 public class RegistrationFormWithPageObject {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
@@ -63,34 +65,34 @@ public class RegistrationFormWithPageObject {
     @Test
     void fillNameTest(){
 
-        //  String firstName="Valeria";
-
-        registrationFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setGender(sex)
-                .setNumber(phone)
-                .setBirthDate(day, month, year)
-                .setSubjects(subject)
-                .setHobbies(hobby)
-                .setPicture("img/crow.jpg")
-                .setAddress(address)
-                .setState("Haryana")
-                .setCity("Karnal")
-                .clickSubmit();
-
-        registrationFormPage.checkResultsTableVisible()
-                .checkResult("Student Name",firstName+ " "+lastName)
-                .checkResult("Student Email",email)
-                .checkResult("Gender",sex)
-                .checkResult("Mobile",phone)
-                .checkResult("Date of Birth",day + " "+ month + "," +  year)
-                .checkResult("Subjects",subject)
-                .checkResult("Hobbies",hobby)
-                .checkResult("Picture","crow.jpg")
-                .checkResult("Address",address)
-                .checkResult("State and City","Haryana Karnal");
-
+    step("Заполнить форму", () -> {
+                registrationFormPage.openPage()
+                        .setFirstName(firstName)
+                        .setLastName(lastName)
+                        .setEmail(email)
+                        .setGender(sex)
+                        .setNumber(phone)
+                        .setBirthDate(day, month, year)
+                        .setSubjects(subject)
+                        .setHobbies(hobby)
+                        .setPicture("img/crow.jpg")
+                        .setAddress(address)
+                        .setState("Haryana")
+                        .setCity("Karnal")
+                        .clickSubmit();
+            });
+    step("Открыть таблицу и сверить данные", () -> {
+            registrationFormPage.checkResultsTableVisible()
+                    .checkResult("Student Name", firstName + " " + lastName)
+                    .checkResult("Student Email", email)
+                    .checkResult("Gender", sex)
+                    .checkResult("Mobile", phone)
+                    .checkResult("Date of Birth", day + " " + month + "," + year)
+                    .checkResult("Subjects", subject)
+                    .checkResult("Hobbies", hobby)
+                    .checkResult("Picture", "crow.jpg")
+                    .checkResult("Address", address)
+                    .checkResult("State and City", "Haryana Karnal");
+        });
     }
 }
