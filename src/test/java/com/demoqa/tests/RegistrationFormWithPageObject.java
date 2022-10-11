@@ -71,7 +71,7 @@ public class RegistrationFormWithPageObject {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-     //   Attach.addVideo();
+       Attach.addVideo();
     }
     @AfterAll
    static void CloseBrowser(){
