@@ -52,8 +52,12 @@ public class RegistrationFormWithPageObject {
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        //        capabilities.setCapability("browserName", "chrome");
+        //        capabilities.setCapability("browserVersion", "100.0");
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
+
 
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1600x800";
@@ -67,7 +71,7 @@ public class RegistrationFormWithPageObject {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+     //   Attach.addVideo();
     }
     @AfterAll
    static void CloseBrowser(){
