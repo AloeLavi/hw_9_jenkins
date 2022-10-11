@@ -5,10 +5,9 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import com.demoqa.pages.RegistrationFormPage;
 import com.demoqa.utils.RandomUtils;
 import com.github.javafaker.Faker;
+import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static io.qameta.allure.Allure.step;
@@ -62,7 +61,16 @@ public class RegistrationFormWithPageObject {
 
     }
 
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+    }
+
     @Test
+    @DisplayName("Заполнение формы данных по студенту на demoqa.com")
     void fillNameTest(){
 
     step("Заполнить форму", () -> {
